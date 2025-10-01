@@ -1,10 +1,10 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { LinearGradient } from "expo-linear-gradient";
+import { Image, StyleSheet } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -12,22 +12,90 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        // tabBarPressColor: "#RRGGBB",
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        // headerShown: false,
+        // tabBarButton: HapticTab,
+        headerStyle:{
+          backgroundColor: 'red',
+        },
+        tabBarStyle: {
+         backgroundColor: 'transparent', 
+        },
+        headerBackground: () => (
+          <LinearGradient
+              colors={["#00c6ff", "#7ddfff"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={StyleSheet.absoluteFill}
+          />
+        ),
+        tabBarBackground: () => (
+          <LinearGradient
+              colors={["#00c6ff", "#7ddfff"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={StyleSheet.absoluteFill}
+          />
+        ),
+         
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="shifts"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Lịch Làm Việc",
+          tabBarLabel: "",
+          headerTitleAlign:"center",
+          headerTitleStyle:{
+            fontWeight:"bold",
+            color:"white"
+          },
+          // headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require("../../assets/images/icon-coin.png")}
+              style={{ width: 30, height: 30, borderRadius: 14 }}
+            />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="main"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Automatic Payroll",
+          tabBarLabel: "",
+          headerTitleAlign:"center",
+          headerTitleStyle:{
+            fontWeight:"bold",
+            color:"white"
+          },
+          // headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require("../../assets/images/icon-ai.png")}
+              style={{ width: 28, height: 28, borderRadius: 14 }}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Cá Nhân",
+          tabBarLabel: "",
+          headerTitleAlign:"center",
+          headerTitleStyle:{
+            fontWeight:"bold",
+            color:"white"
+          },
+          // headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require("../../assets/images/icon-profile.png")}
+              style={{ width: 26, height: 26, borderRadius: 14 }}
+            />
+          ),
         }}
       />
     </Tabs>
