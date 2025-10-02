@@ -12,19 +12,22 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        // tabBarPressColor: "#RRGGBB",
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        // headerShown: false,
-        // tabBarButton: HapticTab,
-        headerStyle:{
-          backgroundColor: 'red',
+         tabBarLabel: "",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            color: "white",
+          },
+        headerStyle: {
+          backgroundColor: "red",
         },
         tabBarStyle: {
-         backgroundColor: 'transparent', 
+          backgroundColor: "transparent",
         },
         headerBackground: () => (
           <LinearGradient
-              colors={["#00c6ff", "#7ddfff"]}
+            colors={["#00c6ff", "#7ddfff"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={StyleSheet.absoluteFill}
@@ -32,26 +35,19 @@ export default function TabLayout() {
         ),
         tabBarBackground: () => (
           <LinearGradient
-              colors={["#00c6ff", "#7ddfff"]}
+            colors={["#00c6ff", "#7ddfff"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={StyleSheet.absoluteFill}
           />
         ),
-         
       }}
     >
       <Tabs.Screen
-        name="shifts"
+        name="(drawer)"
         options={{
-          title: "Lịch Làm Việc",
-          tabBarLabel: "",
-          headerTitleAlign:"center",
-          headerTitleStyle:{
-            fontWeight:"bold",
-            color:"white"
-          },
-          // headerShown: false,
+          title: "Lịch Làm Việcc",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <Image
               source={require("../../assets/images/icon-coin.png")}
@@ -64,13 +60,6 @@ export default function TabLayout() {
         name="main"
         options={{
           title: "Automatic Payroll",
-          tabBarLabel: "",
-          headerTitleAlign:"center",
-          headerTitleStyle:{
-            fontWeight:"bold",
-            color:"white"
-          },
-          // headerShown: false,
           tabBarIcon: ({ color }) => (
             <Image
               source={require("../../assets/images/icon-ai.png")}
@@ -83,13 +72,6 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Cá Nhân",
-          tabBarLabel: "",
-          headerTitleAlign:"center",
-          headerTitleStyle:{
-            fontWeight:"bold",
-            color:"white"
-          },
-          // headerShown: false,
           tabBarIcon: ({ color }) => (
             <Image
               source={require("../../assets/images/icon-profile.png")}

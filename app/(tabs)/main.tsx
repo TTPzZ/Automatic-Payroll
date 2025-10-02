@@ -1,98 +1,120 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { LinearGradient } from "expo-linear-gradient";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
-
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <View style={styles.total}>
+        <LinearGradient
+          colors={["#00c6ff", "#7ddfff"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={[styles.labelTotal, { height: "40%" }]}
+        >
+          <Text style={styles.textVND}>500.000</Text>
+        </LinearGradient>
+        <View style={styles.totalRow}>
+          <LinearGradient
+            colors={["#FF0033", "#FF6F91"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={[styles.labelTotal]}
+          >
+            <Text style={styles.textVND}>-500.000</Text>
+          </LinearGradient>
+          <LinearGradient
+            colors={["#00E676", "#A7FF83"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.labelTotal}
+          >
+            <Text style={styles.textVND}>+500.000</Text>
+          </LinearGradient>
+        </View>
+      </View>
+      <View style={styles.messagee}>
+        <View style={styles.messageAI}>
+          <Image
+            source={require("../../assets/images/icon-ai.png")}
+            style={styles.imagee}
+          ></Image>
+          <View>
+               <LinearGradient
+          colors={["#00c6ff", "#7ddfff"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={[styles.labelTotal, { width: 40 }]}
+        ></LinearGradient>
+              <Text>hehe</Text>
+          </View>
+        
+        </View>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    // width:'100%',
+    // justifyContent:'center',
+    // alignItems:'center',
+    flexDirection: "column",
+    backgroundColor: "#f5f5f5",
+    position: "relative",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  //#region Total
+  total: {
+    flex: 1,
+    backgroundColor: "#fff",
+    margin: "1%",
+    borderRadius: 20,
+    elevation: 6,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: 20,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+
+  textVND: {
+    fontSize: 23,
+    fontWeight: "bold",
+    color: "#fff",
   },
+  labelTotal: {
+    width: "40%",
+    // height: "30%",
+    borderRadius: 100,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  totalRow: {
+    // flex: 1,
+    // backgroundColor: "red",
+    flexDirection: "row",
+    gap: 10,
+    height: "40%",
+  },
+  //#endregion
+  //#region MessageAI
+  messagee: {
+    flex: 4,
+    backgroundColor: "#ffffffff",
+    margin: "1%",
+    borderRadius: 20,
+    elevation: 6,
+    flexDirection: "column",
+  },
+  messageAI: {
+    flexDirection: "row",
+    // height: "10%",
+  },
+  imagee: {
+    height: 50,
+    width: 50,
+    backgroundColor: "red",
+    borderRadius: 10,
+  },
+  //#endregion
 });
